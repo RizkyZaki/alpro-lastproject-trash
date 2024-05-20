@@ -26,6 +26,7 @@ SECRET_KEY = 'django-insecure-&1h!14fk0p6tp^35a1^ub&th&v4uctwswybtcg=%cv8@b1q$e6
 DEBUG = True
 
 ALLOWED_HOSTS = []
+STATICFILES_DIRS = [BASE_DIR / 'static']
 
 
 # Application definition
@@ -54,7 +55,7 @@ ROOT_URLCONF = 'tubes_sampah.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -75,8 +76,12 @@ WSGI_APPLICATION = 'tubes_sampah.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'tubes_sampah',
+        'USER':'root',
+        'PASSWORD': '',
+        'HOST':'localhost',
+        'PORT':'3306'
     }
 }
 
