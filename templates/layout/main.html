@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zxx" class="js">
+  <head>
+    {% include 'plugins/_top.html' %}
+  </head>
+  <body class="nk-body bg-lighter npc-general has-sidebar">
+    <div class="overlay"></div>
+    <div class="spanner">
+      <div class="loader"></div>
+    </div>
+    <div class="nk-app-root">
+      <!-- main @s -->
+      <div class="nk-main">
+        <!-- sidebar @s -->
+        {% include 'partial/_sidebar.html' %}
+        <!-- sidebar @e -->
+        <!-- wrap @s -->
+        <div class="nk-wrap">
+          <!-- main header @s -->
+          {% include 'partial/_header.html' %}
+          <!-- main header @e -->
+          <!-- content @s -->
+          <div class="nk-content">{% block content %}{% endblock %}</div>
+          <!-- content @e -->
+          <!-- footer @s -->
+          {% include 'partial/_footer.html' %}
+          <!-- footer @e -->
+        </div>
+        <!-- wrap @e -->
+      </div>
+      <!-- main @e -->
+    </div>
+    <!-- app-root @e -->
+    <!-- JavaScript -->
+    {% include 'plugins/_bottom.html' %}
+  </body>
+</html>
