@@ -14,6 +14,15 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+"""
+
+Kelas = SI4706
+Kelompok = 11
+Anggota Kelompok
+1. Rizky Zaki Zulkarnaen 102022300080
+https://zach-me.vercel.app
+
+"""
 from django.contrib import admin
 from django.urls import path, include
 from . import views
@@ -22,4 +31,5 @@ urlpatterns = [
     path('', views.index),
     # path('admin/', admin.site.urls),
     path('category/', include('category.urls')),
+    path('trash-place', include('trash_place.urls'))
 ]
