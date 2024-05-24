@@ -5,10 +5,10 @@
       <div class="nk-block-head nk-block-head-sm">
         <div class="nk-block-between">
           <div class="nk-block-head-content">
-            <h4 class="nk-block-title">Kategori</h4>
+            <h4 class="nk-block-title">Data Tempat Sampah</h4>
           </div>
           <div class="nk-block-head-content">
-            <a href="{% url 'category_create' %}" class="btn btn-primary">
+            <a href="{% url 'trash_place_create' %}" class="btn btn-primary">
               <em class="icon ni ni-plus"></em>
               <span> Tambah</span>
             </a>
@@ -26,15 +26,27 @@
           <thead>
             <tr>
               <th class="nk-tb-col nk-tb-col-check">#</th>
-              <th class="nk-tb-col">Nama Kategori</th>
+              <th class="nk-tb-col">Nama Tempat Sampah</th>
+              <th class="nk-tb-col">Kategori</th>
+              <th class="nk-tb-col">Latitude</th>
+              <th class="nk-tb-col">Longitude</th>
               <th class="nk-tb-col nk-tb-col-tools text-end"></th>
             </tr>
           </thead>
           <tbody>
-            {% for item in categories %}
+            {% for item in trash_places %}
             <tr class="">
               <td class="nk-tb-col">{{ forloop.counter }}</td>
               <td class="nk-tb-col"><span class="">{{ item.name }}</span></td>
+              <td class="nk-tb-col">
+                <span class="">{{ item.category.name }}</span>
+              </td>
+              <td class="nk-tb-col">
+                <span class="">{{ item.latitude }}</span>
+              </td>
+              <td class="nk-tb-col">
+                <span class="">{{ item.longitude }}</span>
+              </td>
               <td class="nk-tb-col nk-tb-col-tools">
                 <ul class="nk-tb-actions gx-1">
                   <li>
@@ -48,13 +60,13 @@
                       <div class="dropdown-menu dropdown-menu-end">
                         <ul class="link-list-opt no-bdr">
                           <li>
-                            <a href="{% url 'category_update' item.id %}"
+                            <a href="{% url 'trash_place_update' item.id %}"
                               ><em class="icon ni ni-pen"></em
                               ><span>Edit</span></a
                             >
                           </li>
                           <li>
-                            <a href="{% url 'category_delete' item.id %}"
+                            <a href="{% url 'trash_place_delete' item.id %}"
                               ><em class="icon ni ni-trash"></em
                               ><span>Hapus</span></a
                             >
@@ -76,6 +88,5 @@
   </div>
   <!-- .nk-block-head -->
 </div>
-
 <!-- .nk-block-head -->
 {% endblock %}

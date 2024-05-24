@@ -5,7 +5,7 @@
       <div class="nk-block-head nk-block-head-sm">
         <div class="nk-block-between">
           <div class="nk-block-head-content">
-            <h4 class="nk-block-title">Tambah Kategori</h4>
+            <h4 class="nk-block-title">Konfirmasi Penghapusan</h4>
           </div>
           <div class="nk-block-head-content">
             <a href="{% url 'category_index' %}" class="btn btn-primary">
@@ -18,31 +18,17 @@
       </div>
       <!-- .nk-block-head -->
     </div>
-
-    <!-- .nk-block-head -->
     <div class="card card-preview">
       <div class="card-inner">
-        <form method="POST" action="{% url 'category_create' %}">
-          {% csrf_token %}
-          <div class="form-group">
-            <label for="name">Nama Kategori:</label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              class="form-control"
-              placeholder="Masukkan nama kategori"
-              required
-            />
-          </div>
-          <button type="submit" class="btn btn-primary">Simpan</button>
-        </form>
+        <div class="text-center">
+          <p>Anda yakin ingin menghapus kategori "{{ category.name }}"?</p>
+          <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Ya, Hapus</button>
+          </form>
+        </div>
       </div>
-      <!-- .card-preview -->
     </div>
-    <!-- .nk-block-head -->
   </div>
-  <!-- .nk-block-head -->
 </div>
-<!-- .nk-block-head -->
 {% endblock %}

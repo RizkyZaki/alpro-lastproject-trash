@@ -5,7 +5,7 @@
       <div class="nk-block-head nk-block-head-sm">
         <div class="nk-block-between">
           <div class="nk-block-head-content">
-            <h4 class="nk-block-title">Tambah Kategori</h4>
+            <h4 class="nk-block-title">Ubah Kategori</h4>
           </div>
           <div class="nk-block-head-content">
             <a href="{% url 'category_index' %}" class="btn btn-primary">
@@ -22,7 +22,7 @@
     <!-- .nk-block-head -->
     <div class="card card-preview">
       <div class="card-inner">
-        <form method="POST" action="{% url 'category_create' %}">
+        <form method="POST" action="{% url 'category_update' category.id %}">
           {% csrf_token %}
           <div class="form-group">
             <label for="name">Nama Kategori:</label>
@@ -32,6 +32,7 @@
               name="name"
               class="form-control"
               placeholder="Masukkan nama kategori"
+              value="{{ category.name }}"
               required
             />
           </div>

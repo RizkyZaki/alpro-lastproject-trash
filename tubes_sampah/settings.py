@@ -33,6 +33,7 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 
 INSTALLED_APPS = [
     'category',
+    'trash_place',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

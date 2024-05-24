@@ -1,0 +1,120 @@
+{% extends "layout/main.html" %} {% block content %}
+<div class="container-fluid">
+  <div class="nk-content-inner">
+    <div class="nk-content-body">
+      <div class="nk-block-head nk-block-head-sm">
+        <div class="nk-block-between">
+          <div class="nk-block-head-content">
+            <h4 class="nk-block-title">Ubah Data Tempat Sampah</h4>
+          </div>
+          <div class="nk-block-head-content">
+            <a href="{% url 'trash_place_index' %}" class="btn btn-primary">
+              <em class="icon ni ni-left-arrow"></em>
+              <span> Kembali</span>
+            </a>
+          </div>
+        </div>
+        <!-- .nk-block-between -->
+      </div>
+      <!-- .nk-block-head -->
+    </div>
+
+    <!-- .nk-block-head -->
+    <div class="card card-preview">
+      <div class="card-inner">
+        <form
+          method="POST"
+          action="{% url 'trash_place_update' trash_place.id %}"
+        >
+          {% csrf_token %}
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group mb-3">
+                <label class="mb-2" for="name">Nama Tempat Sampah:</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  class="form-control"
+                  placeholder="Masukkan nama tempat sampah"
+                  value="{{ trash_place.name }}"
+                  required
+                />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group mb-3">
+                <label class="mb-2" for="category">Kategori:</label>
+                <select
+                  id="category"
+                  name="category"
+                  class="form-control"
+                  required
+                >
+                  <option value="" selected disabled>
+                    -- Pilih Kategori --
+                  </option>
+                  {% for category in categories %}
+                  <option value="{{ category.id }}">{{ category.name }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group mb-3">
+                <label class="mb-2" for="address">Alamat:</label>
+                <input
+                  type="text"
+                  id="address"
+                  name="address"
+                  class="form-control"
+                  placeholder="Masukkan alamat"
+                  value="{{ trash_place.address }}"
+                  required
+                />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group mb-3">
+                <label class="mb-2" for="longitude">Longitude:</label>
+                <input
+                  type="text"
+                  id="longitude"
+                  name="longitude"
+                  class="form-control"
+                  placeholder="Masukkan longitude"
+                  value="{{ trash_place.longitude }}"
+                  required
+                />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group mb-3">
+                <label class="mb-2" for="latitude">Latitude:</label>
+                <input
+                  type="text"
+                  id="latitude"
+                  name="latitude"
+                  class="form-control"
+                  placeholder="Masukkan latitude"
+                  value="{{ trash_place.latitude }}"
+                  required
+                />
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Simpan</button>
+        </form>
+      </div>
+      <!-- .card-preview -->
+    </div>
+    <!-- .nk-block-head -->
+  </div>
+  <!-- .nk-block-head -->
+</div>
+<!-- .nk-block-head -->
+{% endblock %}
