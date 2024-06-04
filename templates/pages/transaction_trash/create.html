@@ -1,0 +1,100 @@
+{% extends "layout/main.html" %} {% block content %}
+<div class="container-fluid">
+  <div class="nk-content-inner">
+    <div class="nk-content-body">
+      <div class="nk-block-head nk-block-head-sm">
+        <div class="nk-block-between">
+          <div class="nk-block-head-content">
+            <h4 class="nk-block-title">Buat Transaksi Pengumpulan Sampah</h4>
+          </div>
+          <div class="nk-block-head-content">
+            <a
+              href="{% url 'transaction_trash_index' %}"
+              class="btn btn-primary"
+            >
+              <em class="icon ni ni-left-arrow"></em>
+              <span> Kembali</span>
+            </a>
+          </div>
+        </div>
+        <!-- .nk-block-between -->
+      </div>
+      <!-- .nk-block-head -->
+    </div>
+
+    <!-- .nk-block-head -->
+    <div class="card card-preview">
+      <div class="card-inner">
+        <form method="POST" action="{% url 'transaction_trash_create' %}">
+          {% csrf_token %}
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group mb-3">
+                <label class="mb-2" for="tempat_sampah_id"
+                  >Tempat Sampah:</label
+                >
+                <select
+                  id="tempat_sampah_id"
+                  name="tempat_sampah_id"
+                  class="form-select js-select2"
+                  required
+                >
+                  <option value="" selected disabled>
+                    -- Pilih Tempat Sampah --
+                  </option>
+                  {% for tempat_sampah in tempat_sampah %}
+                  <option value="{{ tempat_sampah.id }}">
+                    {{ tempat_sampah.name }}
+                  </option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group mb-3">
+                <label class="mb-2" for="pengguna_id">Pengguna:</label>
+                <select
+                  id="pengguna_id"
+                  name="pengguna_id"
+                  class="form-select js-select2"
+                  required
+                >
+                  <option value="" selected disabled>
+                    -- Pilih Pengguna --
+                  </option>
+                  {% for pengguna in pengguna %}
+                  <option value="{{ pengguna.id }}">{{ pengguna.name }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group mb-3">
+                <label class="mb-2" for="berat_sampah"
+                  >Berat Sampah (kg):</label
+                >
+                <input
+                  type="number"
+                  id="berat_sampah"
+                  name="berat_sampah"
+                  class="form-control"
+                  placeholder="Masukkan berat sampah"
+                  step="0.01"
+                  required
+                />
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary mt-3">Simpan</button>
+        </form>
+      </div>
+      <!-- .card-preview -->
+    </div>
+    <!-- .nk-block-head -->
+  </div>
+  <!-- .nk-block-head -->
+</div>
+<!-- .nk-block-head -->
+{% endblock %}

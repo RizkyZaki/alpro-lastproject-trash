@@ -1,0 +1,80 @@
+{% extends "layout/main.html" %} {% block content %}
+<div class="container-fluid">
+  <div class="nk-content-inner">
+    <div class="nk-content-body">
+      <div class="nk-block-head nk-block-head-sm">
+        <div class="nk-block-between">
+          <div class="nk-block-head-content">
+            <h4 class="nk-block-title">Buat Data Pengguna</h4>
+          </div>
+          <div class="nk-block-head-content">
+            <a href="{% url 'user_index' %}" class="btn btn-primary">
+              <em class="icon ni ni-left-arrow"></em>
+              <span> Kembali</span>
+            </a>
+          </div>
+        </div>
+        <!-- .nk-block-between -->
+      </div>
+      <!-- .nk-block-head -->
+    </div>
+
+    <!-- .nk-block-head -->
+    <div class="card card-preview">
+      <div class="card-inner">
+        <form method="POST" action="{% url 'user_create' %}">
+          {% csrf_token %}
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group mb-3">
+                <label class="mb-2" for="name">Nama Pengguna</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  class="form-control"
+                  placeholder="Masukkan nama pengguna"
+                  required
+                />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group mb-3">
+                <label class="mb-2" for="address">Email</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  class="form-control"
+                  placeholder="Masukkan Email"
+                  required
+                />
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group mb-3">
+                <label class="mb-2" for="longitude">Password</label>
+                <input
+                  type="password"
+                  id="longitude"
+                  name="longitude"
+                  class="form-control"
+                  placeholder="Masukkan Password"
+                  required
+                />
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Simpan</button>
+        </form>
+      </div>
+      <!-- .card-preview -->
+    </div>
+    <!-- .nk-block-head -->
+  </div>
+  <!-- .nk-block-head -->
+</div>
+<!-- .nk-block-head -->
+{% endblock %}

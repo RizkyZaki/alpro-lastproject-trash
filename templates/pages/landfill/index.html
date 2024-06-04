@@ -1,0 +1,88 @@
+{% extends "layout/main.html" %} {% block content %}
+<div class="container-fluid">
+  <div class="nk-content-inner">
+    <div class="nk-content-body">
+      <div class="nk-block-head nk-block-head-sm">
+        <div class="nk-block-between">
+          <div class="nk-block-head-content">
+            <h4 class="nk-block-title">Data TPA</h4>
+          </div>
+          <div class="nk-block-head-content">
+            <a href="{% url 'landfill_create' %}" class="btn btn-primary">
+              <em class="icon ni ni-plus"></em>
+              <span> Tambah</span>
+            </a>
+          </div>
+        </div>
+        <!-- .nk-block-between -->
+      </div>
+      <!-- .nk-block-head -->
+    </div>
+
+    <!-- .nk-block-head -->
+    <div class="card card-preview">
+      <div class="card-inner">
+        <table class="datatable-init table" data-auto-responsive="false">
+          <thead>
+            <tr>
+              <th class="nk-tb-col nk-tb-col-check">#</th>
+              <th class="nk-tb-col">Nama TPA</th>
+              <th class="nk-tb-col">Alamat</th>
+              <th class="nk-tb-col">Keterangan</th>
+              <th class="nk-tb-col nk-tb-col-tools text-end"></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for item in landfill %}
+            <tr class="">
+              <td class="nk-tb-col">{{ forloop.counter }}</td>
+              <td class="nk-tb-col"><span class="">{{ item.nama }}</span></td>
+              <td class="nk-tb-col">
+                <span class="">{{ item.alamat }}</span>
+              </td>
+              <td class="nk-tb-col">
+                <span class="">{{ item.keterangan }}</span>
+              </td>
+              <td class="nk-tb-col nk-tb-col-tools">
+                <ul class="nk-tb-actions gx-1">
+                  <li>
+                    <div class="dropdown">
+                      <a
+                        href="#"
+                        class="dropdown-toggle btn btn-icon btn-trigger"
+                        data-bs-toggle="dropdown"
+                        ><em class="icon ni ni-more-h"></em
+                      ></a>
+                      <div class="dropdown-menu dropdown-menu-end">
+                        <ul class="link-list-opt no-bdr">
+                          <li>
+                            <a href="{% url 'landfill_update' item.id %}"
+                              ><em class="icon ni ni-pen"></em
+                              ><span>Edit</span></a
+                            >
+                          </li>
+                          <li>
+                            <a href="{% url 'landfill_delete' item.id %}"
+                              ><em class="icon ni ni-trash"></em
+                              ><span>Hapus</span></a
+                            >
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <!-- .card-preview -->
+    </div>
+    <!-- .nk-block-head -->
+  </div>
+  <!-- .nk-block-head -->
+</div>
+<!-- .nk-block-head -->
+{% endblock %}

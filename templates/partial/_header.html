@@ -68,15 +68,17 @@
               <div
                 class="dropdown-inner user-card-wrap bg-lighter d-none d-md-block"
               >
+                {% if user.is_authenticated %}
                 <div class="user-card">
                   <div class="user-avatar">
-                    <span> XX</span>
+                    <span>AV</span>
                   </div>
                   <div class="user-info">
-                    <span class="lead-text">XX</span>
-                    <span class="sub-text">XX</span>
+                    <span class="lead-text">{{ user.name }}</span>
+                    <span class="sub-text">{{ user.email }}</span>
                   </div>
                 </div>
+                {% endif %}
               </div>
               <div class="dropdown-inner">
                 <ul class="link-list">
@@ -97,10 +99,10 @@
               <div class="dropdown-inner">
                 <ul class="link-list">
                   <li>
-                    <a href="xx"
-                      ><em class="icon ni ni-signout"></em
-                      ><span>Keluar</span></a
-                    >
+                    <a href="{% url 'logout' %}">
+                      <em class="icon ni ni-signout"></em>
+                      <span>Keluar</span>
+                    </a>
                   </li>
                 </ul>
               </div>

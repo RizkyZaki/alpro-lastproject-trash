@@ -34,6 +34,9 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 INSTALLED_APPS = [
     'category',
     'trash_place',
+    'users',
+    'transaction_trash',
+    'landfill',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -50,6 +53,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    # 'tubes_sampah.middleware.LoginRequiredMiddleware',
 ]
 
 ROOT_URLCONF = 'tubes_sampah.urls'

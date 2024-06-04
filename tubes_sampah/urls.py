@@ -28,8 +28,13 @@ from django.urls import path, include
 from . import views
 
 urlpatterns = [
-    path('', views.index),
+    path('', views.index, name='dashboard'),
     # path('admin/', admin.site.urls),
+    path('login/', views.user_login, name='login'),  
+    path('logout/', views.user_logout, name='logout'),
     path('category/', include('category.urls')),
-    path('trash-place', include('trash_place.urls'))
+    path('trash-place', include('trash_place.urls')),
+    path('user/', include('users.urls')),
+    path('landfill/', include('landfill.urls')),
+    path('transaction_trash/', include('transaction_trash.urls')),
 ]

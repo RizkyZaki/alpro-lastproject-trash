@@ -1,0 +1,111 @@
+{% extends "layout/main.html" %} {% block content %}
+<div class="container-fluid">
+  <div class="nk-content-inner">
+    <div class="nk-content-body">
+      <div class="nk-block-head nk-block-head-sm">
+        <div class="nk-block-between">
+          <div class="nk-block-head-content">
+            <h4 class="nk-block-title">Data Tempat Sampah</h4>
+          </div>
+          <div class="nk-block-head-content">
+            <a
+              href="{% url 'transaction_trash_create' %}"
+              class="btn btn-primary"
+            >
+              <em class="icon ni ni-plus"></em>
+              <span> Tambah</span>
+            </a>
+          </div>
+        </div>
+        <!-- .nk-block-between -->
+      </div>
+      <!-- .nk-block-head -->
+    </div>
+
+    <!-- .nk-block-head -->
+    <div class="card card-preview">
+      <div class="card-inner">
+        <table class="datatable-init table" data-auto-responsive="false">
+          <thead>
+            <tr>
+              <th class="nk-tb-col">Kode</th>
+              <th class="nk-tb-col">Tempat Sampah</th>
+              <th class="nk-tb-col">Berat Sampah</th>
+              <th class="nk-tb-col">Tanggal</th>
+              <th class="nk-tb-col">Tujuan</th>
+              <th class="nk-tb-col nk-tb-col-tools text-end"></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for item in transaction_trash %}
+            <tr class="">
+              <td class="nk-tb-col">
+                <span class="">{{ item.trash_place.name }}</span>
+              </td>
+              <td class="nk-tb-col">
+                <span class="">{{ item.category.name }}</span>
+              </td>
+              <td class="nk-tb-col">
+                <span class="">{{ item.berat_sampah }}</span>
+              </td>
+              <td class="nk-tb-col">
+                <span class="">{{ item.created_at|date:"d M Y H:i" }}</span>
+              </td>
+
+              <td class="nk-tb-col">
+                <span class=""
+                  >{{ transaction.landfill.nama if transaction.landfill else
+                  'Belum Ditentukan' }}</span
+                >
+              </td>
+              <td class="nk-tb-col nk-tb-col-tools">
+                <ul class="nk-tb-actions gx-1">
+                  <li>
+                    <div class="dropdown">
+                      <a
+                        href="#"
+                        class="dropdown-toggle btn btn-icon btn-trigger"
+                        data-bs-toggle="dropdown"
+                        ><em class="icon ni ni-more-h"></em
+                      ></a>
+                      <div class="dropdown-menu dropdown-menu-end">
+                        <ul class="link-list-opt no-bdr">
+                          <li>
+                            <a href="{% url 'trash_place_update' item.id %}"
+                              ><em class="icon ni ni-pen"></em
+                              ><span>Edit</span></a
+                            >
+                          </li>
+                          <li>
+                            <a href="{% url 'trash_place_landfill' item.id %}"
+                              ><em class="icon ni ni-reload"></em
+                              ><span>Proses TPA</span></a
+                            >
+                          </li>
+                          {% comment %}
+                          <li>
+                            <a href="{% url 'trash_place_delete' item.id %}"
+                              ><em class="icon ni ni-trash"></em
+                              ><span>Hapus</span></a
+                            >
+                          </li>
+                          {% endcomment %}
+                        </ul>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <!-- .card-preview -->
+    </div>
+    <!-- .nk-block-head -->
+  </div>
+  <!-- .nk-block-head -->
+</div>
+<!-- .nk-block-head -->
+{% endblock %}
