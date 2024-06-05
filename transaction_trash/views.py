@@ -12,18 +12,20 @@ def index(request):
 def create(request):
     if request.method == 'POST':
         kode_transaksi = get_random_string(10)
-        tempat_sampah_id = request.POST.get('tempat_sampah')
+        trash_place_id = request.POST.get('trash_place_id')
         berat_sampah = request.POST.get('berat_sampah')
-        pengguna_id = request.POST.get('pengguna')
+        tanggal = request.POST.get('tanggal')
+        user_id = request.POST.get('user_id')
 
-        tempat_sampah = TrashPlace.objects.get(id=tempat_sampah_id)
-        pengguna = Users.objects.get(id=pengguna_id)
+        trash_place = TrashPlace.objects.get(id=trash_place_id)
+        user = Users.objects.get(id=user_id)
 
         transaction = TrashTransaction(
             kode_transaksi=kode_transaksi,
-            tempat_sampah_id=tempat_sampah_id,
+            trash_place=trash_place,
+            tanggal=tanggal,
             berat_sampah=berat_sampah,
-            pengguna_id=pengguna_id,
+            user=user,
         )
         transaction.save()
         return redirect('transaction_trash_index')
@@ -34,7 +36,7 @@ def create(request):
             'tempat_sampah': tempat_sampah,
             'pengguna': pengguna,
         })
-
+        
 def update(request, id):
     transaction = get_object_or_404(TrashTransaction, id=id)
     if request.method == 'POST':
@@ -62,3 +64,6 @@ def delete(request, id):
         transaction.delete()
         return redirect('transaction_trash_index')
     return render(request, 'transaction_trash/transaction_confirm_delete.html', {'transaction': transaction})
+
+def process_landfill(request, id):
+    return 0

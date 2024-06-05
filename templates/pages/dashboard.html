@@ -14,10 +14,200 @@
         <!-- .nk-block-between -->
       </div>
       <!-- .nk-block-head -->
+      <div class="nk-block">
+        <div class="row g-gs">
+          <div class="col-xl-3 col-sm-3 col-md-4 col-sm-6">
+            <div class="card">
+              <div class="nk-ecwg nk-ecwg6">
+                <div class="card-inner">
+                  <div class="card-title-group">
+                    <div class="card-title">
+                      <h6 class="title">Total Tempat Sampah</h6>
+                    </div>
+                  </div>
+                  <div class="data">
+                    <div class="data-group">
+                      <div class="amount">{{ total_places }}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-sm-3 col-md-4 col-sm-6">
+            <div class="card">
+              <div class="nk-ecwg nk-ecwg6">
+                <div class="card-inner">
+                  <div class="card-title-group">
+                    <div class="card-title">
+                      <h6 class="title">Total TPA</h6>
+                    </div>
+                  </div>
+                  <div class="data">
+                    <div class="data-group">
+                      <div class="amount">{{ total_landfills }}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-sm-3 col-md-4 col-sm-6">
+            <div class="card">
+              <div class="nk-ecwg nk-ecwg6">
+                <div class="card-inner">
+                  <div class="card-title-group">
+                    <div class="card-title">
+                      <h6 class="title">Total Pengguna</h6>
+                    </div>
+                  </div>
+                  <div class="data">
+                    <div class="data-group">
+                      <div class="amount">{{ total_users }}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-sm-3 col-md-4 col-sm-6">
+            <div class="card">
+              <div class="nk-ecwg nk-ecwg6">
+                <div class="card-inner">
+                  <div class="card-title-group">
+                    <div class="card-title">
+                      <h6 class="title">Total Berat Sampah</h6>
+                    </div>
+                  </div>
+                  <div class="data">
+                    <div class="data-group">
+                      <div class="amount">{{ total_weight }} kg</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xxl-6 col-sm-12">
+            <div class="card">
+              <div class="nk-ecwg nk-ecwg6">
+                <div class="card-inner">
+                  <div class="card-title-group">
+                    <div class="card-title">
+                      <h6 class="title">Lokasi Tempat Sampah</h6>
+                    </div>
+                  </div>
+                  <div
+                    class="d-flex justify-center"
+                    id="map"
+                    style="height: 340px"
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xxl-6 col-sm-12">
+            <div class="card">
+              <div class="nk-ecwg nk-ecwg6">
+                <div class="card-inner">
+                  <div class="card-title-group">
+                    <div class="card-title">
+                      <h6 class="title">Statistik Kategori Sampah</h6>
+                    </div>
+                  </div>
+                  <div
+                    class="d-flex justify-center"
+                    id="stats-cat"
+                    style="height: 340px"
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xxl-12 col-sm-12">
+            <div class="card">
+              <div class="nk-ecwg nk-ecwg6">
+                <div class="card-inner">
+                  <div class="card-title-group">
+                    <div class="card-title">
+                      <h6 class="title">Statistik Pengumpulan Sampah</h6>
+                    </div>
+                  </div>
+                  <div class="d-flex justify-center" id="stats"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <!-- .nk-block-head -->
   </div>
   <!-- .nk-block-head -->
 </div>
 <!-- .nk-block-head -->
+{% endblock %} {% block js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var chartData = {{ chart_data|safe }};
+      var pieChartData = {{ pie_chart_data|safe }};
+
+      // Line Chart for Trash Transactions
+      var options = {
+          chart: {
+            height: 350,
+            type: 'area',
+            toolbar: {
+                show: true
+            }
+          },
+          series: [{
+              name: 'Total Berat Sampah',
+              data: chartData.data
+          }],
+          xaxis: {
+              categories: chartData.labels
+          },
+          tooltip: {
+            y: {
+                formatter: function (value) {
+                    return value.toLocaleString() + ' kg';
+                }
+            }
+        }
+
+      };
+      var chart = new ApexCharts(document.querySelector("#stats"), options);
+      chart.render();
+
+      // Pie Chart for TrashPlace per Category
+      var pieOptions = {
+          chart: {
+            width: 400,
+            type: 'pie',
+            toolbar: {
+                show: false
+            }
+          },
+          series: pieChartData.data,
+          labels: pieChartData.labels,
+      };
+      var pieChart = new ApexCharts(document.querySelector("#stats-cat"), pieOptions);
+      pieChart.render();
+  });
+    var map = L.map('map').setView([-6.1754, 106.8272], 13);  // Default to Jakarta coordinates
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '© OpenStreetMap'
+    }).addTo(map);
+
+    var places = {{ places|safe }};
+
+    places.forEach(function(place) {
+        L.marker([place.latitude, place.longitude])
+            .bindPopup(place.name)
+            .addTo(map);
+    });
+</script>
 {% endblock %}

@@ -30,12 +30,10 @@
           <div class="row">
             <div class="col-md-6">
               <div class="form-group mb-3">
-                <label class="mb-2" for="tempat_sampah_id"
-                  >Tempat Sampah:</label
-                >
+                <label class="mb-2" for="trash_place_id">Tempat Sampah:</label>
                 <select
-                  id="tempat_sampah_id"
-                  name="tempat_sampah_id"
+                  id="trash_place_id"
+                  name="trash_place_id"
                   class="form-select js-select2"
                   required
                 >
@@ -52,10 +50,10 @@
             </div>
             <div class="col-md-6">
               <div class="form-group mb-3">
-                <label class="mb-2" for="pengguna_id">Pengguna:</label>
+                <label class="mb-2" for="user_id">Pengguna:</label>
                 <select
-                  id="pengguna_id"
-                  name="pengguna_id"
+                  id="user_id"
+                  name="user_id"
                   class="form-select js-select2"
                   required
                 >
@@ -70,7 +68,20 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-6">
+              <div class="form-group mb-3">
+                <label class="mb-2" for="tanggal">Tanggal</label>
+                <input
+                  type="date"
+                  id="tanggal"
+                  name="tanggal"
+                  class="form-control"
+                  placeholder="Masukkan Tanggal"
+                  required
+                />
+              </div>
+            </div>
+            <div class="col-md-6">
               <div class="form-group mb-3">
                 <label class="mb-2" for="berat_sampah"
                   >Berat Sampah (kg):</label

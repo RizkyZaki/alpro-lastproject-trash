@@ -37,26 +37,27 @@
             </tr>
           </thead>
           <tbody>
-            {% for item in transaction_trash %}
+            {% for item in transactions %}
             <tr class="">
               <td class="nk-tb-col">
-                <span class="">{{ item.trash_place.name }}</span>
+                <span class="">{{ item.kode_transaksi }}</span>
               </td>
               <td class="nk-tb-col">
-                <span class="">{{ item.category.name }}</span>
+                <span class="">{{ item.trash_place.name }}</span>
               </td>
               <td class="nk-tb-col">
                 <span class="">{{ item.berat_sampah }}</span>
               </td>
               <td class="nk-tb-col">
-                <span class="">{{ item.created_at|date:"d M Y H:i" }}</span>
+                <span class="">{{ item.tanggal|date:"d M Y" }}</span>
               </td>
 
               <td class="nk-tb-col">
-                <span class=""
-                  >{{ transaction.landfill.nama if transaction.landfill else
-                  'Belum Ditentukan' }}</span
-                >
+                {% if item.landfill %}
+                <span class="">{{ item.landfill.nama }}</span>
+                {% else %}
+                <span class="">Belum Ditentukan</span>
+                {% endif %}
               </td>
               <td class="nk-tb-col nk-tb-col-tools">
                 <ul class="nk-tb-actions gx-1">
@@ -77,7 +78,7 @@
                             >
                           </li>
                           <li>
-                            <a href="{% url 'trash_place_landfill' item.id %}"
+                            <a href="{% url 'process_landfill' item.id %}"
                               ><em class="icon ni ni-reload"></em
                               ><span>Proses TPA</span></a
                             >
