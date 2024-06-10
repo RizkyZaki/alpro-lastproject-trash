@@ -3,6 +3,7 @@ from .models import TrashTransaction
 from django.utils.crypto import get_random_string
 from users.models import Users
 from trash_place.models import TrashPlace
+from landfill.models import Landfill
 
 def index(request):
     transactions = TrashTransaction.objects.select_related('trash_place', 'landfill').all()
@@ -66,4 +67,22 @@ def delete(request, id):
     return render(request, 'transaction_trash/transaction_confirm_delete.html', {'transaction': transaction})
 
 def process_landfill(request, id):
-    return 0
+    transaction = get_object_or_404(TrashTransaction, id=id)
+    if request.method == 'POST':
+        landfill_id = request.POST.get('landfill_id')
+        landfill = get_object_or_404(Landfill, id=landfill_id)
+        transaction.landfill = landfill
+        transaction.save()
+        return redirect('transaction_trash_index')
+    else:
+        landfills = Landfill.objects.all()
+        return render(request, 'pages/transaction_trash/process_landfill.html', {
+            'transaction': transaction,
+            'landfills': landfills,
+        })
+        
+def detail(request, id):
+    transaction = get_object_or_404(TrashTransaction, id=id)
+    return render(request, 'pages/transaction_trash/detail.html', {'transaction': transaction})
+
+

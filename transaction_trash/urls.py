@@ -7,4 +7,5 @@ urlpatterns = [
     path('update/<int:id>/', views.update, name='transaction_trash_update'),
     path('delete/<int:id>/', views.delete, name='transaction_trash_delete'),
     path('landfill/<int:id>/', views.process_landfill, name='process_landfill'),
+    path('detail/<int:id>/', views.detail, name='trash_detail'),
 ]

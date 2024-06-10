@@ -71,22 +71,30 @@
                       ></a>
                       <div class="dropdown-menu dropdown-menu-end">
                         <ul class="link-list-opt no-bdr">
+                          {% if item.landfill %}
                           <li>
-                            <a href="{% url 'trash_place_update' item.id %}"
-                              ><em class="icon ni ni-pen"></em
+                            <a href="{% url 'trash_detail' item.id %}">
+                              <em class="icon ni ni-eye"></em
+                              ><span>Detail</span></a
+                            >
+                          </li>
+                          {% else %}
+                          <li>
+                            <a href="{% url 'trash_place_update' item.id %}">
+                              <em class="icon ni ni-pen"></em
                               ><span>Edit</span></a
                             >
                           </li>
                           <li>
-                            <a href="{% url 'process_landfill' item.id %}"
-                              ><em class="icon ni ni-reload"></em
+                            <a href="{% url 'process_landfill' item.id %}">
+                              <em class="icon ni ni-reload"></em
                               ><span>Proses TPA</span></a
                             >
                           </li>
-                          {% comment %}
+                          {% endif %} {% comment %}
                           <li>
-                            <a href="{% url 'trash_place_delete' item.id %}"
-                              ><em class="icon ni ni-trash"></em
+                            <a href="{% url 'trash_place_delete' item.id %}">
+                              <em class="icon ni ni-trash"></em
                               ><span>Hapus</span></a
                             >
                           </li>
