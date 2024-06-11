@@ -6,7 +6,7 @@
         <div class="nk-block-between">
           <div class="nk-block-head-content">
             <h4 class="nk-block-title">
-              Detail Transaksi {{ transaction.kode_transaksi }}
+              Detail Transaksi {{ tps.kode_transaksi }}
             </h4>
           </div>
         </div>
@@ -21,28 +21,26 @@
         <table class="table">
           <tr>
             <th>Kode Transaksi</th>
-            <td>{{ transaction.kode_transaksi }}</td>
+            <td>{{ tps.kode_transaksi }}</td>
           </tr>
           <tr>
             <th>Tempat Sampah</th>
-            <td>{{ transaction.trash_place.name }}</td>
+            <td>{{ tps.trash_place.name }}</td>
           </tr>
           <tr>
             <th>Berat Sampah</th>
-            <td>{{ transaction.berat_sampah }} kg</td>
+            <td>{{ tps.berat_sampah }} kg</td>
           </tr>
           <tr>
             <th>Tanggal</th>
-            <td>{{ transaction.tanggal|date:"d M Y" }}</td>
+            <td>{{ tps.tanggal|date:"d M Y" }}</td>
           </tr>
           <tr>
             <th>Tujuan</th>
-            <td>{{ transaction.landfill.nama }}</td>
+            <td>{{ tps.tpa.nama }}</td>
           </tr>
         </table>
-        <a
-          href="{% url 'transaction_trash_index' %}"
-          class="btn btn-secondary mt-3"
+        <a href="{% url 'tps_index' %}" class="btn btn-secondary mt-3"
           >Kembali</a
         >
       </div>

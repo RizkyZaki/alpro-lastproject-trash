@@ -8,7 +8,7 @@
             <h4 class="nk-block-title">Konfirmasi Penghapusan</h4>
           </div>
           <div class="nk-block-head-content">
-            <a href="{% url 'landfill_index' %}" class="btn btn-primary">
+            <a href="{% url 'tpa_index' %}" class="btn btn-primary">
               <em class="icon ni ni-left-arrow"></em>
               <span> Kembali</span>
             </a>
@@ -21,7 +21,7 @@
     <div class="card card-preview">
       <div class="card-inner">
         <div class="text-center">
-          <p>Anda yakin ingin menghapus TPA "{{ landfill.name }}"?</p>
+          <p>Anda yakin ingin menghapus TPA "{{ tpa.name }}"?</p>
           <form method="post">
             {% csrf_token %}
             <button type="submit" class="btn btn-danger">Ya, Hapus</button>

@@ -29,12 +29,14 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name='dashboard'),
+    path('search/', views.search, name='search'),
+    path('filter/', views.filter, name='filter'),
     # path('admin/', admin.site.urls),
     path('login/', views.user_login, name='login'),  
     path('logout/', views.user_logout, name='logout'),
     path('category/', include('category.urls')),
     path('trash-place', include('trash_place.urls')),
     path('user/', include('users.urls')),
-    path('landfill/', include('landfill.urls')),
-    path('transaction_trash/', include('transaction_trash.urls')),
+    path('tpa/', include('tpa.urls')),
+    path('tps/', include('tps.urls')),
 ]

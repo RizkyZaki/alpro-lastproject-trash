@@ -10,7 +10,11 @@
               <p>Selamat Datang Di Dashboard Sampah Maju</p>
             </div>
           </div>
+          <!-- .nk-block-head-content -->
+
+          <!-- .nk-block-head-content -->
         </div>
+        <!-- .nk-block-between -->
         <!-- .nk-block-between -->
       </div>
       <!-- .nk-block-head -->
@@ -145,9 +149,11 @@
   </div>
   <!-- .nk-block-head -->
 </div>
+
 <!-- .nk-block-head -->
 {% endblock %} {% block js %}
 <script>
+
     document.addEventListener('DOMContentLoaded', function () {
       var chartData = {{ chart_data|safe }};
       var pieChartData = {{ pie_chart_data|safe }};

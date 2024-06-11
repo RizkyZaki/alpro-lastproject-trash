@@ -8,7 +8,7 @@
             <h4 class="nk-block-title">Tambah TPA</h4>
           </div>
           <div class="nk-block-head-content">
-            <a href="{% url 'landfill_index' %}" class="btn btn-primary">
+            <a href="{% url 'tpa_index' %}" class="btn btn-primary">
               <em class="icon ni ni-left-arrow"></em>
               <span> Kembali</span>
             </a>
@@ -22,7 +22,7 @@
     <!-- .nk-block-head -->
     <div class="card card-preview">
       <div class="card-inner">
-        <form method="POST" action="{% url 'landfill_create' %}">
+        <form method="POST" action="{% url 'tpa_update' %}">
           {% csrf_token %}
           <div class="form-group">
             <label for="name">Nama TPA:</label>

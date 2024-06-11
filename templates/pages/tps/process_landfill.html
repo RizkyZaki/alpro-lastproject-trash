@@ -18,22 +18,19 @@
     <!-- .nk-block-head -->
     <div class="card card-preview">
       <div class="card-inner">
-        <form
-          method="POST"
-          action="{% url 'process_landfill' transaction.id %}"
-        >
+        <form method="POST" action="{% url 'process_landfill' tps.id %}">
           {% csrf_token %}
           <div class="form-group mb-3">
-            <label class="mb-2" for="landfill_id">Pilih Tujuan TPA:</label>
+            <label class="mb-2" for="tpa_id">Pilih Tujuan TPA:</label>
             <select
-              id="landfill_id"
-              name="landfill_id"
+              id="tpa_id"
+              name="tpa_id"
               class="form-select js-select2"
               required
             >
               <option value="" selected disabled>-- Pilih TPA --</option>
-              {% for landfill in landfills %}
-              <option value="{{ landfill.id }}">{{ landfill.name }}</option>
+              {% for tpa in tpa %}
+              <option value="{{ tpa.id }}">{{ tpa.nama }}</option>
               {% endfor %}
             </select>
           </div>

@@ -8,7 +8,7 @@
             <h4 class="nk-block-title">Ubah TPA</h4>
           </div>
           <div class="nk-block-head-content">
-            <a href="{% url 'landfill_index' %}" class="btn btn-primary">
+            <a href="{% url 'tpa_index' %}" class="btn btn-primary">
               <em class="icon ni ni-left-arrow"></em>
               <span> Kembali</span>
             </a>
@@ -22,7 +22,7 @@
     <!-- .nk-block-head -->
     <div class="card card-preview">
       <div class="card-inner">
-        <form method="POST" action="{% url 'landfill_update' landfill.id %}">
+        <form method="POST" action="{% url 'tpa_update' tpa.id %}">
           {% csrf_token %}
           <div class="form-group">
             <label for="name">Nama TPA:</label>
@@ -32,7 +32,7 @@
               name="nama"
               class="form-control"
               placeholder="Masukkan nama"
-              value="{{ landfill.nama }}"
+              value="{{ tpa.nama }}"
               required
             />
           </div>
@@ -46,7 +46,7 @@
                   name="alamat"
                   class="form-control"
                   placeholder="Masukkan Alamat"
-                  value="{{ landfill.alamat }}"
+                  value="{{ tpa.alamat }}"
                   required
                 />
               </div>
@@ -60,7 +60,7 @@
                   name="keterangan"
                   class="form-control"
                   placeholder="Masukkan Keterangan"
-                  value="{{ landfill.keterangan }}"
+                  value="{{ tpa.keterangan }}"
                   required
                 />
               </div>

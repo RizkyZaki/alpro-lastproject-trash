@@ -16,14 +16,14 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout
 from users.models import Users
 from trash_place.models import TrashPlace
-from transaction_trash.models import TrashTransaction
-from landfill.models import  Landfill
+from tps.models import Tps
+from tpa.models import  Tpa
 from django.db.models import Sum
 from django.db.models.functions import TruncMonth
 from datetime import datetime
 from category.models import Category
 import calendar
-from django.db.models import Count, Sum
+from django.db.models import Count, Sum, Q
 from django.db.models.functions import TruncMonth
 
 def index(request):
@@ -37,21 +37,18 @@ def index(request):
         } for place in trash_places
     ]
 
-    # Data for Trash Transaction Chart (total weight of trash collected per month)
-    transactions = TrashTransaction.objects \
+    transactions = Tps.objects \
         .annotate(month=TruncMonth('tanggal')) \
         .values('month') \
         .annotate(total_weight=Sum('berat_sampah')) \
         .order_by('month')
 
-    # Prepare data for chart labels (month names) and data (total weight)
     chart_labels = [calendar.month_name[transaction['month'].month] for transaction in transactions]
     chart_data = {
         'labels': chart_labels,
         'data': [float(transaction['total_weight']) if transaction['total_weight'] else 0 for transaction in transactions],  # Ensure it's float
     }
 
-    # Data for TrashPlace per Category Chart
     category_data = TrashPlace.objects.values('category__name').annotate(total_places=Count('id'))
     pie_chart_data = {
         'labels': [data['category__name'] for data in category_data],
@@ -60,9 +57,9 @@ def index(request):
 
     # Additional counts and sums
     total_places = TrashPlace.objects.count()
-    total_landfills = Landfill.objects.count()
+    total_landfills = Tpa.objects.count()
     total_users = Users.objects.count()
-    total_weight = TrashTransaction.objects.aggregate(Sum('berat_sampah'))['berat_sampah__sum']
+    total_weight = Tps.objects.aggregate(Sum('berat_sampah'))['berat_sampah__sum']
 
     return render(request, 'pages/dashboard.html', {
         'places': json.dumps(places),
@@ -73,6 +70,26 @@ def index(request):
         'total_users': total_users,
         'total_weight': total_weight,
     })
+    
+def search(request):
+    query = request.GET.get('q')
+    if query:
+        results = TrashPlace.objects.filter(
+            Q(name__icontains=query) |
+            Q(category__name__icontains=query) |
+            Q(latitude__icontains=query) |
+            Q(longitude__icontains=query)
+        )
+    else:
+        results = TrashPlace.objects.all()
+    
+    return render(request, 'pages/trash_place/index.html', {'trash_places': results, 'query': query})
+
+def filter(request):
+    month = request.GET.get('month')
+    tps = Tps.objects.select_related('trash_place', 'tpa').all()
+    tps = tps.filter(tanggal__month=month)
+    return render(request, 'pages/tps/index.html', {'tps': tps})
 
 def user_login(request):
     if request.method == 'POST':

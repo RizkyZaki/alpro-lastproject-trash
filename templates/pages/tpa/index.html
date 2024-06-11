@@ -5,13 +5,10 @@
       <div class="nk-block-head nk-block-head-sm">
         <div class="nk-block-between">
           <div class="nk-block-head-content">
-            <h4 class="nk-block-title">Data Tempat Sampah</h4>
+            <h4 class="nk-block-title">Data TPA</h4>
           </div>
           <div class="nk-block-head-content">
-            <a
-              href="{% url 'transaction_trash_create' %}"
-              class="btn btn-primary"
-            >
+            <a href="{% url 'tpa_create' %}" class="btn btn-primary">
               <em class="icon ni ni-plus"></em>
               <span> Tambah</span>
             </a>
@@ -28,36 +25,23 @@
         <table class="datatable-init table" data-auto-responsive="false">
           <thead>
             <tr>
-              <th class="nk-tb-col">Kode</th>
-              <th class="nk-tb-col">Tempat Sampah</th>
-              <th class="nk-tb-col">Berat Sampah</th>
-              <th class="nk-tb-col">Tanggal</th>
-              <th class="nk-tb-col">Tujuan</th>
+              <th class="nk-tb-col nk-tb-col-check">#</th>
+              <th class="nk-tb-col">Nama TPA</th>
+              <th class="nk-tb-col">Alamat</th>
+              <th class="nk-tb-col">Keterangan</th>
               <th class="nk-tb-col nk-tb-col-tools text-end"></th>
             </tr>
           </thead>
           <tbody>
-            {% for item in transactions %}
+            {% for item in tpa %}
             <tr class="">
+              <td class="nk-tb-col">{{ forloop.counter }}</td>
+              <td class="nk-tb-col"><span class="">{{ item.nama }}</span></td>
               <td class="nk-tb-col">
-                <span class="">{{ item.kode_transaksi }}</span>
+                <span class="">{{ item.alamat }}</span>
               </td>
               <td class="nk-tb-col">
-                <span class="">{{ item.trash_place.name }}</span>
-              </td>
-              <td class="nk-tb-col">
-                <span class="">{{ item.berat_sampah }}</span>
-              </td>
-              <td class="nk-tb-col">
-                <span class="">{{ item.tanggal|date:"d M Y" }}</span>
-              </td>
-
-              <td class="nk-tb-col">
-                {% if item.landfill %}
-                <span class="">{{ item.landfill.nama }}</span>
-                {% else %}
-                <span class="">Belum Ditentukan</span>
-                {% endif %}
+                <span class="">{{ item.keterangan }}</span>
               </td>
               <td class="nk-tb-col nk-tb-col-tools">
                 <ul class="nk-tb-actions gx-1">
@@ -71,34 +55,18 @@
                       ></a>
                       <div class="dropdown-menu dropdown-menu-end">
                         <ul class="link-list-opt no-bdr">
-                          {% if item.landfill %}
                           <li>
-                            <a href="{% url 'trash_detail' item.id %}">
-                              <em class="icon ni ni-eye"></em
-                              ><span>Detail</span></a
-                            >
-                          </li>
-                          {% else %}
-                          <li>
-                            <a href="{% url 'trash_place_update' item.id %}">
-                              <em class="icon ni ni-pen"></em
+                            <a href="{% url 'tpa_update' item.id %}"
+                              ><em class="icon ni ni-pen"></em
                               ><span>Edit</span></a
                             >
                           </li>
                           <li>
-                            <a href="{% url 'process_landfill' item.id %}">
-                              <em class="icon ni ni-reload"></em
-                              ><span>Proses TPA</span></a
-                            >
-                          </li>
-                          {% endif %} {% comment %}
-                          <li>
-                            <a href="{% url 'trash_place_delete' item.id %}">
-                              <em class="icon ni ni-trash"></em
+                            <a href="{% url 'tpa_delete' item.id %}"
+                              ><em class="icon ni ni-trash"></em
                               ><span>Hapus</span></a
                             >
                           </li>
-                          {% endcomment %}
                         </ul>
                       </div>
                     </div>
