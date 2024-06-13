@@ -68,7 +68,8 @@ def update(request, id):
 
         return redirect('trash_place_index')
     else:
-        return render(request, 'pages/trash_place/update.html', {'trash_place': trash_place})
+        categories = Category.objects.all()
+        return render(request, 'pages/trash_place/update.html', {'trash_place': trash_place, 'categories':categories})
 
 def delete(request, id):
     trash_place = get_object_or_404(TrashPlace, id=id)
