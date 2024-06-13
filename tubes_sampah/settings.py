@@ -9,6 +9,15 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
+"""
+
+Kelas = SI4706
+Kelompok = 11
+Anggota Kelompok
+1. Rizky Zaki Zulkarnaen 102022300080
+https://zach-me.vercel.app
+
+"""
 
 from pathlib import Path
 

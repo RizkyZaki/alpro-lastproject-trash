@@ -22,7 +22,7 @@
     <!-- .nk-block-head -->
     <div class="card card-preview">
       <div class="card-inner">
-        <form method="POST" action="{% url 'tpa_update' %}">
+        <form method="POST" action="{% url 'tpa_create' %}">
           {% csrf_token %}
           <div class="form-group">
             <label for="name">Nama TPA:</label>

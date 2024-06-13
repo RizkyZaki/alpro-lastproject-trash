@@ -1,3 +1,12 @@
+"""
+
+Kelas = SI4706
+Kelompok = 11
+Anggota Kelompok
+1. Rizky Zaki Zulkarnaen 102022300080
+https://zach-me.vercel.app
+
+"""
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Tps
 from django.utils.crypto import get_random_string

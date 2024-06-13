@@ -1,3 +1,12 @@
+"""
+
+Kelas = SI4706
+Kelompok = 11
+Anggota Kelompok
+1. Rizky Zaki Zulkarnaen 102022300080
+https://zach-me.vercel.app
+
+"""
 from django.db import models
 from users.models import Users
 from trash_place.models import TrashPlace  # Sesuaikan dengan nama app dan model
