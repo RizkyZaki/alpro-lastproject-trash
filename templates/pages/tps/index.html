@@ -80,13 +80,14 @@
                               ><span>Detail</span></a
                             >
                           </li>
-                          {% else %}
+                          {% else %} {% comment %}
                           <li>
                             <a href="{% url 'trash_place_update' item.id %}">
                               <em class="icon ni ni-pen"></em
                               ><span>Edit</span></a
                             >
                           </li>
+                          {% endcomment %}
                           <li>
                             <a href="{% url 'process_landfill' item.id %}">
                               <em class="icon ni ni-reload"></em

@@ -32,17 +32,17 @@ def create(request):
 def update(request, id):
     tpa = get_object_or_404(Tpa, id=id)
     if request.method == 'POST':
-        Tpa.nama = request.POST.get('nama')
-        Tpa.alamat = request.POST.get('alamat')
-        Tpa.keterangan = request.POST.get('keterangan')
+        tpa.nama = request.POST.get('nama')
+        tpa.alamat = request.POST.get('alamat')
+        tpa.keterangan = request.POST.get('keterangan')
         
-        Tpa.save()
+        tpa.save()
         return redirect('tpa_index')
     return render(request, 'pages/tpa/update.html', {'tpa': tpa})
 
 def delete(request, id):
     tpa = get_object_or_404(Tpa, id=id)
     if request.method == 'POST':
-        Tpa.delete()
+        tpa.delete()
         return redirect('tpa_index')
     return render(request, 'pages/tpa/delete.html', {'tpa': tpa})
